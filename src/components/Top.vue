@@ -47,7 +47,7 @@
 
     watch: {
       movieUrl: function (value) {
-        const stringValidation = /^[0-9a-zA-Z]*$/.test(value)
+        const stringValidation = /^[a-zA-Z0-9!-/:-@¥[-`{-~]+$/.test(value)
         if (!value) {
           this.movieErrorMessages = [
             '入力してください',
