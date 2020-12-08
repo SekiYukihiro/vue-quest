@@ -1,18 +1,11 @@
 <template>
 	<v-container>
-		<v-card
-			class="my-10"
-			elevation="10"
-			rounded="xl"
-			width="100%"
-		>
-			<v-container
-				class="mx-10 text-center"
-			>
-				<input-form />
-			</v-container>
-		</v-card>
-	</v-container>
+    <input-form
+      formRounded="xl"
+      :formElevation="formElevation"
+      @storeMovie="storeMovie"
+    />
+  </v-container>
 </template>
 
 <script>
@@ -21,5 +14,17 @@
     components: {
       InputForm,
     },
-	}
+
+    data () {
+      return {
+      formElevation: "10",
+      }
+    },
+
+    methods: {
+      storeMovie (movieUrl, comment) {
+        console.log(movieUrl, comment) 
+      },
+    },
+  }
 </script>
