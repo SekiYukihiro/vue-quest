@@ -5,9 +5,15 @@
       :formElevation="formElevation"
       @storeMovie="storeMovie"
     />
+    <v-messages
+      :value="responseError"
+      color="red"
+      class="mt-5 text-center"
+    />
     <movies
       ref="movies"
       :movie-items="movieItems"
+      :loading="loading"
     />
   </v-container>
 </template>
@@ -26,7 +32,9 @@
     data () {
       return {
         formElevation: "10",
-        movieItems: {},
+        movieItems: [{}],
+        loading: true,
+        responseError: [],
       }
     },
 
@@ -41,7 +49,11 @@
           this.movieItems = [Object.assign({}, response.data.user.movies)]
         }).catch((error) => {
           console.log(error)
+          this.responseError = ['動画の取得に失敗しました']
         }).finally(() => {
+          setTimeout(() => {
+            this.loading = false
+          }, 1000)
           this.$refs.movies.init() 
         })
       },
