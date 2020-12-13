@@ -35,8 +35,8 @@
     },
 
     methods: {
-      async getMovies () {
-        await axios.get('https://youtube-curation.herokuapp.com/rest/1'
+      getMovies () {
+        axios.get('https://youtube-curation.herokuapp.com/rest/1'
         ).then((response) => {
           this.movieItems = [Object.assign({}, response.data.user.movies)]
         }).catch((error) => {
