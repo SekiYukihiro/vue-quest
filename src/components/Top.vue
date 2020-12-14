@@ -8,7 +8,7 @@
     <v-messages
       :value="responseError"
       color="red"
-      class="mt-5 text-center"
+      class="response-error my-5 text-center"
     />
     <movies
       ref="movies"
@@ -58,8 +58,29 @@
         })
       },
       storeMovie (movieUrl, comment) {
-        console.log(movieUrl, comment)
+        this.loading = true
+        this.responseError = []
+        axios.post('https://youtube-curation.herokuapp.com/rest', {
+          url: movieUrl,
+          comment: comment,
+        }).then((response) => {
+          this.movieItems = [Object.assign({}, response.data.movies)]
+        }).catch((error) => {
+          console.log(error)
+          this.responseError = ['動画の投稿に失敗しました']
+        }).finally(() => {
+          setTimeout(() => {
+            this.loading = false
+          }, 1000)
+          this.$refs.movies.init() 
+        })
       }
     },
   }
 </script>
+
+<style>
+  .response-error .v-messages__message {
+    font-size: 18px
+  }
+</style>

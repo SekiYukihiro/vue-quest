@@ -64,12 +64,23 @@
         this.movieInternalItems = []
         Object.keys(this.movieItems[0]).forEach(i => {
           const newItem = {
-            id: this.movieItems[0][i].url,
+            id: this.movieItems[0][i].id,
             url: 'https://www.youtube.com/embed/' + this.movieItems[0][i].url + '?controls=1&loop=1&playlist=' + this.movieItems[0][i].url,
             comment: this.movieItems[0][i].comment,
           }
           this.movieInternalItems.push(newItem)
         })
+        this.movieInternalItems.sort(this.descending)
+      },
+      // IDの降順に並び換え
+      descending (a, b) {
+        let comparison = 0
+        if (a.id > b.id) {
+          comparison = -1
+        } else if (b.id > a.id) {
+          comparison = 1
+        }
+        return comparison
       },
     },
   }
