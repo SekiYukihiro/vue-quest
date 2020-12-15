@@ -46,7 +46,8 @@
       getMovies () {
         axios.get('https://youtube-curation.herokuapp.com/rest/1'
         ).then((response) => {
-          this.movieItems = [Object.assign({}, response.data.user.movies)]
+          console.log(response.data.user.movies)
+          this.movieItems = response.data.user.movies
         }).catch((error) => {
           console.log(error)
           this.responseError = ['動画の取得に失敗しました']
@@ -64,7 +65,7 @@
           url: movieUrl,
           comment: comment,
         }).then((response) => {
-          this.movieItems = [Object.assign({}, response.data.movies)]
+          this.movieItems = response.data.movies
         }).catch((error) => {
           console.log(error)
           this.responseError = ['動画の投稿に失敗しました']

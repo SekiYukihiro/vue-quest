@@ -62,11 +62,11 @@
       // 動画の初期表示処理
       init () {
         this.movieInternalItems = []
-        Object.keys(this.movieItems[0]).forEach(i => {
+        Object.keys(this.movieItems).forEach(i => {
           const newItem = {
-            id: this.movieItems[0][i].id,
-            url: 'https://www.youtube.com/embed/' + this.movieItems[0][i].url + '?controls=1&loop=1&playlist=' + this.movieItems[0][i].url,
-            comment: this.movieItems[0][i].comment,
+            id: this.movieItems[i].id,
+            url: 'https://www.youtube.com/embed/' + this.movieItems[i].url + '?controls=1&loop=1&playlist=' + this.movieItems[i].url,
+            comment: this.movieItems[i].comment,
           }
           this.movieInternalItems.push(newItem)
         })
